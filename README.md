@@ -31,7 +31,7 @@
 <script type="text/javascript" src="/arcgisdk/3.9/init.js"></script>
 ```
 
- - 修改源码SDK包源码引用
+ - 修改SDK包源码引用
 
    
 
@@ -57,7 +57,7 @@
 </script>
 ```
 
-## 2.  Class: BaseMap（基础底图类）##
+## 2.  Class: BaseMap（基础底图类）
 基础底图类，该类继承于Map 对象，有关Map对象的资料请看[【这里】][1]
 #### 2.1 AMD Module Require
 ```
@@ -87,6 +87,16 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
 - addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson点图层
 - addLineGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson线图层
 - addGonGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson线图层
+
+#### 2.4 Method Details
+
+> **# new IndexedDB({})**
+> 
+> 创建indexedDB实例
+> - dbname  <String> 【数据库名称】 默认“db_index”
+> - version <String> 【数据库版本】 默认“1”
+> - dbstore <JSON>【对象存储空间JSON】（name:存储空间名称,keyPath:主键字段,indexKey：如果要设置索引则添加该索引字段）
+> - callback <Function> 【回调函数】 回调参数为数据库对象
 
   [1]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html
   [2]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1
