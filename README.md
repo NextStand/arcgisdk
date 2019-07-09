@@ -86,28 +86,13 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
 ```
 [options参数请点击这里][2]
 
-#### 2.3 Methods
-- changeBaseMap(id)    -- 切换底图类型
-- toggleLable()    -- 切换标注
-- goto(lng, lat , zoom?)    -- 定位点，将点拉到屏幕中心
-- adbLayer(layer, index?)    -- 附加图层,可用于图层管理
-- hideAttachLayer(name)    -- 隐藏附加图层
-- showAttachLayer(name)    -- 显示附加图层
-- destoryAttachLayer(name)    -- 销毁附加图层
-- hasLayer(name)    -- 判断图层是否存在
-- zoomIn(zoom)    -- 放大地图
-- zoomOut(zoom)    -- 缩小地图
-- addWMSLayer(url, name, extent, callback?)    -- 添加WMS图层
-- addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson点图层
-- addLineGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson线图层
-- addGonGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson线图层
 
-#### 2.4 Method Details
+#### 2.3 Method Details
 
 **# changeBaseMap(id)**
 
- 切换底图类型
- - id <String> 【底图类型标识】 sldt-矢量底图,imgdt-影像底图,dxdt-地形底图
+切换底图类型
+- id <String> 【底图类型标识】 sldt-矢量底图,imgdt-影像底图,dxdt-地形底图
 
 
 ----------
@@ -115,7 +100,7 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
 
 **# toggleLable()**
 
- 切换标注 
+切换标注 
 
 
 ----------
@@ -125,9 +110,9 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
 
 将底图中心定位到指定位置
 
- - lng <Float>    经度
- - lat <Float>    纬度
- - zoom <Int>    缩放层级  默认当前层级
+- lng <Float>    经度
+- lat <Float>    纬度
+- zoom <Int>    缩放层级  默认当前层级
 
 
 ----------
@@ -135,67 +120,67 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
 
 特殊的附加图层，可用于图层管理，不建议直接使用原型的添加图层方法
 
- - layer <Layer>    所有继承于 esri/layers 的实例
- - index <Int>    图层层级
+- layer <Layer>    所有继承于 esri/layers 的实例
+- index <Int>    图层层级
 ----------
 **# hideAttachLayer(name)**
 
- 隐藏附加图层，只针对 adbLayer 方法添加的图层有效
- - name <String>    图层名称或者id
+隐藏附加图层，只针对 adbLayer 方法添加的图层有效
+- name <String>    图层名称或者id
 
 
 ----------
 **# showAttachLayer(name)**
 
- 显示附加图层，只针对 adbLayer 方法添加的图层有效
- - name <String>    图层名称或者id
+显示附加图层，只针对 adbLayer 方法添加的图层有效
+- name <String>    图层名称或者id
 
 ----------
 **# destoryAttachLayer(name)**
 
- 销毁附加图层，只针对 adbLayer 方法添加的图层有效
- - name <String>    图层名称或者id
+销毁附加图层，只针对 adbLayer 方法添加的图层有效
+- name <String>    图层名称或者id
 
 ----------
 **# hasLayer(name)**
 
- 判断图层是否存在，只针对 adbLayer 方法添加的图层有效
- - name <String>    图层名称或者id
+判断图层是否存在，只针对 adbLayer 方法添加的图层有效
+- name <String>    图层名称或者id
 
 ----------
 **# zoomIn(zoom)**
 
- 地图放大
- - zoom <Number>    放大层级
+地图放大
+- zoom <Number>    放大层级
 
 ----------
 **# zoomOut(zoom)**
 
- 地图缩小
- - zoom <Number>    缩小层级
+地图缩小
+- zoom <Number>    缩小层级
 
 ----------
 
 **# addWMSLayer(url, name, extent, callback?)**
 
- 添加WMS图层
- - url     <String>    WMS图层服务地址
- - name    <String>    命名空间:图层名称
- - extent  <Object>    坐标范围{xmin, ymin, xmax, ymax}
- - callback <Function> 回调函数
+添加WMS图层
+- url     <String>    WMS图层服务地址
+- name    <String>    命名空间:图层名称
+- extent  <Object>    坐标范围{xmin, ymin, xmax, ymax}
+- callback <Function> 回调函数
 
 ----------
 
 **# addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
 
- 添加GeoJson点图层
- - name <String>    图层名称或id
- - url    <String>    服务或GeoJson文件的地址（同域）
- - infoTemplate1 <Object>    信息框内容
- - symbol <Object>    imgurl & heigth & width
- - callback <Function> 回调函数
- - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
- - maxdraw <Int> 最大绘制量  default 1,000,000
+添加GeoJson点图层
+- name <String>    图层名称或id
+- url    <String>    服务或GeoJson文件的地址（同域）
+- infoTemplate1 <Object>    信息框内容
+- symbol <Object>    imgurl & heigth & width
+- callback <Function> 回调函数
+- options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
+- maxdraw <Int> 最大绘制量  default 1,000,000
 
 
 ```
@@ -216,20 +201,20 @@ baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTempl
 
 **# addLineGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
 
- 添加GeoJson点图层
- - name <String>    图层名称或id
- - url    <String>    服务或GeoJson文件的地址（同域）
- - infoTemplate1 <Object>    信息框内容
- - symbol <Object>    color & width
- - callback <Function> 回调函数
- - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
- - maxdraw <Int> 最大绘制量  default 1,000,000
+添加GeoJson点图层
+- name <String>    图层名称或id
+- url    <String>    服务或GeoJson文件的地址（同域）
+- infoTemplate1 <Object>    信息框内容
+- symbol <Object>    color & width
+- callback <Function> 回调函数
+- options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
+- maxdraw <Int> 最大绘制量  default 1,000,000
 
 ----------
 
 **# addGonGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
 
- 添加GeoJson面图层
+添加GeoJson面图层
  - name <String>    图层名称或id
  - url    <String>    服务或GeoJson文件的地址（同域）
  - infoTemplate1 <Object>    信息框内容
