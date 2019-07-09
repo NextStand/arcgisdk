@@ -13,6 +13,20 @@
 
  - 使用步骤
  - BaseMap类（基础底图类）
+    - changeBaseMap(id)    -- 切换底图类型
+    - toggleLable()    -- 切换标注
+    - goto(lng, lat , zoom?)    -- 定位点，将点拉到屏幕中心
+    - adbLayer(layer, index?)    -- 附加图层,可用于图层管理
+    - hideAttachLayer(name)    -- 隐藏附加图层
+    - showAttachLayer(name)    -- 显示附加图层
+    - destoryAttachLayer(name)    -- 销毁附加图层
+    - hasLayer(name)    -- 判断图层是否存在
+    - zoomIn(zoom)    -- 放大地图
+    - zoomOut(zoom)    -- 缩小地图
+    - addWMSLayer(url, name, extent, callback?)    -- 添加WMS图层
+    - addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson点图层
+    - addLineGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson线图层
+    - addGonGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson线图层
 
 ## 1. 使用步骤 ##
 
