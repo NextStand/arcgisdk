@@ -215,13 +215,13 @@ baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTempl
 **# addGonGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
 
 添加GeoJson面图层
- - name <String>    图层名称或id
- - url    <String>    服务或GeoJson文件的地址（同域）
- - infoTemplate1 <Object>    信息框内容
- - symbol <Object>    color & width & fillcolor [255, 255, 0, 0.25]
- - callback <Function> 回调函数
- - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
- - maxdraw <Int> 最大绘制量  default 1,000,000
+- name <String>    图层名称或id
+- url    <String>    服务或GeoJson文件的地址（同域）
+- infoTemplate1 <Object>    信息框内容
+- symbol <Object>    color & width & fillcolor [255, 255, 0, 0.25]
+- callback <Function> 回调函数
+- options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
+- maxdraw <Int> 最大绘制量  default 1,000,000
 
 
 
