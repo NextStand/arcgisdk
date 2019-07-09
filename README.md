@@ -90,13 +90,25 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
 
 #### 2.4 Method Details
 
-> **# new IndexedDB({})**
+> **changeBaseMap(id)**
 > 
-> 创建indexedDB实例
-> - dbname  <String> 【数据库名称】 默认“db_index”
-> - version <String> 【数据库版本】 默认“1”
-> - dbstore <JSON>【对象存储空间JSON】（name:存储空间名称,keyPath:主键字段,indexKey：如果要设置索引则添加该索引字段）
-> - callback <Function> 【回调函数】 回调参数为数据库对象
+>  切换底图类型
+>  - id <String> 【底图类型标识】 sldt-矢量底图,imgdt-影像底图,dxdt-地形底图
+
+
+> **toggleLable()**
+> 
+>  切换标注
+> 
+
+
+> **goto(lng, lat, zoom?)**
+> 
+> 将底图中心定位到指定位置
+> 
+>  - lng <Float>    【经度】
+>  - lat <Float>    【纬度】
+>  - zoom <Int>    【缩放层级】 默认当前层级
 
   [1]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html
   [2]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1
