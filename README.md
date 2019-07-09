@@ -170,10 +170,9 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
  - extent  <Object>    坐标范围{xmin, ymin, xmax, ymax}
  - callback <Function> 回调函数
 
-
 ----------
 
-**# addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
+**# addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?) **
 
  添加GeoJson点图层
  - name <String>    图层名称或id
@@ -184,17 +183,19 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
  - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
  - maxdraw <Int> 最大绘制量  default 1,000,000
 
+
+
 ```
 var infoTemplate1 = {
     title: "地块信息",
     content: "地块编码：${DKBM}<br/>面积（亩）：${面积亩}"
 }
 var symbol={
-    imgurl:'/static/map/img/local-marker.png',
+    imgurl:"/static/map/img/local-marker.png",
     width:10,
     height:10
 }
-baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTemplate1, symbol, function (layer) {/* code goes here */ })
+baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTemplate1, symbol, function (layer) {/* code goes here */ });
 ```
 
 
