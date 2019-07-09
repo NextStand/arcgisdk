@@ -161,16 +161,18 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
  - zoom <Number>    缩小层级
 
 ----------
+
 **# addWMSLayer(url, name, extent, callback?)**
 
  添加WMS图层
- - url <String>    WMS图层服务地址
+ - url     <String>    WMS图层服务地址
  - name    <String>    命名空间:图层名称
- - extent <Object>    坐标范围{xmin, ymin, xmax, ymax}
+ - extent  <Object>    坐标范围{xmin, ymin, xmax, ymax}
  - callback <Function> 回调函数
 
 
 ----------
+
 **# addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
 
  添加GeoJson点图层
@@ -184,7 +186,7 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
 
 ```
 var infoTemplate1 = {
-    title: '地块信息',
+    title: "地块信息",
     content: "地块编码：${DKBM}<br/>面积（亩）：${面积亩}"
 }
 var symbol={
@@ -195,7 +197,9 @@ var symbol={
 baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTemplate1, symbol, function (layer) {/* code goes here */ })
 ```
 
+
 ----------
+
 **# addLineGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
 
  添加GeoJson点图层
@@ -208,6 +212,7 @@ baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTempl
  - maxdraw <Int> 最大绘制量  default 1,000,000
 
 ----------
+
 **# addGonGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
 
  添加GeoJson面图层
@@ -218,6 +223,8 @@ baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTempl
  - callback <Function> 回调函数
  - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
  - maxdraw <Int> 最大绘制量  default 1,000,000
+
+
 
   [1]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html
   [2]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1
