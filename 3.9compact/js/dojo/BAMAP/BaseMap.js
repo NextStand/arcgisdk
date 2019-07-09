@@ -100,7 +100,7 @@ define([
                 return this;
             },
             /**
-             * BMap 类特殊的附加图层，可用于图层管理，不建议直接使用原型的添加图层方法
+             * 特殊的附加图层，可用于图层管理，不建议直接使用原型的添加图层方法
              * @param {Object} layer 附加的图层对象
              * @param {Int} index 图层顺序
              */
@@ -115,7 +115,7 @@ define([
                     if (index) {
                         ctx.addLayer(layer, index);
                     } else {
-                        ctx.addLayer(layer, index);
+                        ctx.addLayer(layer);
                     }
                     return this;
                 } else {
@@ -239,9 +239,10 @@ define([
 
             /**
              * 根据geojson数据添加点图层
+             * @param {String} name 图层名称或id
              * @param {String} url 服务或文件的地址（同域）
              * @param {Object} infoTemplate1 
-             * @param {Object} symbol color & width
+             * @param {Object} symbol imgurl & heigth & width
              * @param {Function} callback  回调参数为GraphicsLayer
              * @param {Object} options GraphicsLayer的所有构造参数
              * @param {Int} maxdraw 最大绘制量  default 1,000,000
@@ -250,7 +251,6 @@ define([
                 var ctx = this, infoTemplate1 = infoTemplate1 || {}, symbol = symbol || {};
                 if (!url || !name) {
                     throw new Error('Function addGeoJsonLayer,The URL and Name parameter is required, but it is not provided');
-                    return;
                 }
                 if (this.__AttachLayers.hasOwnProperty(name)) {
                     throw new Error("The " + name + " layer already exists");
