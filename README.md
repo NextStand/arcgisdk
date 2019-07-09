@@ -172,7 +172,7 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
 
 ----------
 
-**# addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?) **
+**# addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
 
  添加GeoJson点图层
  - name <String>    图层名称或id
@@ -183,6 +183,8 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
  - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
  - maxdraw <Int> 最大绘制量  default 1,000,000
 
+
+----------
 
 
 ```
