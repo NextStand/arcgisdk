@@ -6,6 +6,7 @@
 > 描述：arcgis for js 开发包,基于arcgis for js 3.9
 
 该开发包是基于arcgis for javascript 3.9，是对原始API的一个扩充，原始API正常使用，该SDK仅封装了开发过程中常用的方法，开发包内使用瓦片下载的方式对全国天地图底图进行加载，默认坐标系为**WGS 84**,如果你是**CGCS2000坐标系**，那你可以放心使用；如果需要使用其他REST服务作为底图，咱们另说。
+
 【提示】所有的非原始方法都可以链式调用
 
 ## 目录
@@ -34,9 +35,9 @@
 
    
 
->  若你是使用的完整版请将**“/arcgisdk/3.9compact/init.js”**和**“/arcgisdk/3.9compact/js/dojo/dojo/dojo.js”**中的**“localhost:8009”**修改成你的项目地址和端口
+>  若你是使用的完整版请将**/arcgisdk/3.9compact/init.js**和**/arcgisdk/3.9compact/js/dojo/dojo/dojo.js**中的**localhost:8009**修改成你的项目地址和端口
 
->  若你是使用的是完整版请将**“/arcgisdk/3.9/init.js”**和**“/arcgisdk/3.9/js/dojo/dojo/dojo.js”**中的**“localhost:8009”**修改成你的项目地址和端口
+>  若你是使用的是完整版请将**/arcgisdk/3.9/init.js**和**/arcgisdk/3.9/js/dojo/dojo/dojo.js**中的**localhost:8009**修改成你的项目地址和端口
 
  - 请开始你的代码，下面是个初始化例子
 
