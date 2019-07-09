@@ -90,25 +90,135 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
 
 #### 2.4 Method Details
 
-> **changeBaseMap(id)**
-> 
->  切换底图类型
->  - id <String> 【底图类型标识】 sldt-矢量底图,imgdt-影像底图,dxdt-地形底图
+**# changeBaseMap(id)**
+
+ 切换底图类型
+ - id <String> 【底图类型标识】 sldt-矢量底图,imgdt-影像底图,dxdt-地形底图
 
 
-> **toggleLable()**
-> 
->  切换标注
-> 
+----------
 
 
-> **goto(lng, lat, zoom?)**
-> 
-> 将底图中心定位到指定位置
-> 
->  - lng <Float>    【经度】
->  - lat <Float>    【纬度】
->  - zoom <Int>    【缩放层级】 默认当前层级
+**# toggleLable()**
+
+ 切换标注 
+
+
+----------
+
+
+**# goto(lng, lat, zoom?)**
+
+将底图中心定位到指定位置
+
+ - lng <Float>    经度
+ - lat <Float>    纬度
+ - zoom <Int>    缩放层级  默认当前层级
+
+
+----------
+**# adbLayer(layer, index?)**
+
+特殊的附加图层，可用于图层管理，不建议直接使用原型的添加图层方法
+
+ - layer <Layer>    所有继承于 esri/layers 的实例
+ - index <Int>    图层层级
+----------
+**# hideAttachLayer(name)**
+
+ 隐藏附加图层，只针对 adbLayer 方法添加的图层有效
+ - name <String>    图层名称或者id
+
+
+----------
+**# showAttachLayer(name)**
+
+ 显示附加图层，只针对 adbLayer 方法添加的图层有效
+ - name <String>    图层名称或者id
+
+----------
+**# destoryAttachLayer(name)**
+
+ 销毁附加图层，只针对 adbLayer 方法添加的图层有效
+ - name <String>    图层名称或者id
+
+----------
+**# hasLayer(name)**
+
+ 判断图层是否存在，只针对 adbLayer 方法添加的图层有效
+ - name <String>    图层名称或者id
+
+----------
+**# zoomIn(zoom)**
+
+ 地图放大
+ - zoom <Number>    放大层级
+
+----------
+**# zoomOut(zoom)**
+
+ 地图缩小
+ - zoom <Number>    缩小层级
+
+----------
+**# addWMSLayer(url, name, extent, callback?)**
+
+ 添加WMS图层
+ - url <String>    WMS图层服务地址
+ - name    <String>    命名空间:图层名称
+ - extent <Object>    坐标范围{xmin, ymin, xmax, ymax}
+ - callback <Function> 回调函数
+
+
+----------
+**# addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
+
+ 添加GeoJson点图层
+ - name <String>    图层名称或id
+ - url    <String>    服务或GeoJson文件的地址（同域）
+ - infoTemplate1 <Object>    信息框内容
+ - symbol <Object>    imgurl & heigth & width
+ - callback <Function> 回调函数
+ - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
+ - maxdraw <Int> 最大绘制量  default 1,000,000
+
+```
+var infoTemplate1 = {
+    title: '地块信息',
+    content: "地块编码：${DKBM}<br/>面积（亩）：${面积亩}"
+}
+var symbol={
+    imgurl:'/static/map/img/local-marker.png',
+    width:10,
+    height:10
+}
+baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTemplate1, symbol, function (layer) {/* code goes here */ })
+```
+
+----------
+**# addLineGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
+
+ 添加GeoJson点图层
+ - name <String>    图层名称或id
+ - url    <String>    服务或GeoJson文件的地址（同域）
+ - infoTemplate1 <Object>    信息框内容
+ - symbol <Object>    color & width
+ - callback <Function> 回调函数
+ - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
+ - maxdraw <Int> 最大绘制量  default 1,000,000
+
+----------
+**# addGonGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
+
+ 添加GeoJson面图层
+ - name <String>    图层名称或id
+ - url    <String>    服务或GeoJson文件的地址（同域）
+ - infoTemplate1 <Object>    信息框内容
+ - symbol <Object>    color & width & fillcolor [255, 255, 0, 0.25]
+ - callback <Function> 回调函数
+ - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
+ - maxdraw <Int> 最大绘制量  default 1,000,000
 
   [1]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html
   [2]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1
+  [3]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html#graphicslayer2
