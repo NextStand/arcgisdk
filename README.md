@@ -35,9 +35,9 @@
 
    
 
->  若你是使用的完整版请将**/arcgisdk/3.9compact/init.js**和**/arcgisdk/3.9compact/js/dojo/dojo/dojo.js**中的**localhost:8009**修改成你的项目地址和端口
+>  若你是使用的完整版请将 **/arcgisdk/3.9compact/init.js** 和 **/arcgisdk/3.9compact/js/dojo/dojo/dojo.js** 中的 **localhost:8009** 修改成你的项目地址和端口
 
->  若你是使用的是完整版请将**/arcgisdk/3.9/init.js**和**/arcgisdk/3.9/js/dojo/dojo/dojo.js**中的**localhost:8009**修改成你的项目地址和端口
+>  若你是使用的是完整版请将 **/arcgisdk/3.9/init.js** 和 **/arcgisdk/3.9/js/dojo/dojo/dojo.js** 中的 **localhost:8009** 修改成你的项目地址和端口
 
  - 请开始你的代码，下面是个初始化例子
 
