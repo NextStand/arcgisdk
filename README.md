@@ -181,7 +181,12 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
 - callback <Function> 回调函数
 - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
 - maxdraw <Int> 最大绘制量  default 1,000,000
+【注意】调用此API时候请添加以下两个引用
 
+```
+<script src="/arcgisdk/vendor/terraformer/terraformer.min.js"></script>
+<script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"></script>
+```
 
 ```
 var infoTemplate1 = {
@@ -210,6 +215,12 @@ baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTempl
 - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
 - maxdraw <Int> 最大绘制量  default 1,000,000
 
+【注意】调用此API时候请添加以下两个引用
+
+```
+<script src="/arcgisdk/vendor/terraformer/terraformer.min.js"></script>
+<script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"></script>
+```
 ----------
 
 **# addGonGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
@@ -223,7 +234,12 @@ baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTempl
 - options <Object> GraphicsLayer类的所有构造参数，[点击查看][3]
 - maxdraw <Int> 最大绘制量  default 1,000,000
 
+【注意】调用此API时候请添加以下两个引用
 
+```
+<script src="/arcgisdk/vendor/terraformer/terraformer.min.js"></script>
+<script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"></script>
+```
 
   [1]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html
   [2]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1
