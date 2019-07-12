@@ -258,7 +258,7 @@ define([
                 var params = $.extend(true, { id: name, url: url, maxdraw: maxdraw || 1000000 }, options || {});
                 if (JSON.stringify(infoTemplate1) == '{}') { params['infoTemplate'] = false }
                 var geoJsonLayer = new GeoJsonLayer(params);
-                var imgurl = symbol.imgurl || '/static/map/img/local-marker.png', width = symbol.width || 10, height = symbol.height || 10;
+                var imgurl = symbol.imgurl || '/arcgisdk/images/local-marker.png', width = symbol.width || 10, height = symbol.height || 10;
                 var sls = new PictureMarkerSymbol(imgurl, width, height);
                 geoJsonLayer.renderer = new SimpleRenderer(sls);
                 if (JSON.stringify(infoTemplate1) !== '{}') {
