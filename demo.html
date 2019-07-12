@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" type="text/css" href="/arcgisdk/3.9compact/js/dojo/dijit/themes/tundra/tundra.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/arcgisdk/3.9compact/js/esri/css/esri.css" />
+    <script language="JavaScript" type="text/javascript" src="/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/arcgisdk/3.9compact/init.js"></script>
+    <script src="/arcgisdk/vendor/terraformer/terraformer.min.js"></script>
+    <script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"></script>
+</head>
+
+<body style="height: 100%;margin: 0">
+    <div style="position: absolute;top:0;right: 0;z-index: 999;">
+        <button onclick="baseMap.changeBaseMap('sldt')">sldt-矢量底图</button>
+        <button onclick="baseMap.changeBaseMap('imgdt')">imgdt-影像底图</button>
+        <button onclick="baseMap.changeBaseMap('dxdt')">dxdt-地形底图</button>
+        <button onclick="baseMap.toggleLable()">切换标注</button>
+        <button onclick="baseMap.goto(104.0637, 30.6598,18)">定位中心点</button>
+        <button onclick="baseMap.destoryAttachLayer('122')">销毁图层</button>
+        <button onclick="baseMap.zoomIn()">放大</button>
+        <button onclick="baseMap.zoomOut(3)">缩小</button>
+        <button onclick="drawMap.drawPoint()">绘制点</button>
+        <button onclick="drawMap.drawPolyLine()">绘制折线</button>
+        <button onclick="drawMap.drawCircle()">绘制圆形</button>
+        <button onclick="drawMap.drawPolyGon()">绘制多边形</button>
+        <button
+        onclick='graphicLayer.addPoint(103.786370, 30.38, {title:"测试",content:"<h3>${foo}</h3>"},{foo:"hello"},null,true)'>添加点</button>
+        <button
+        onclick='graphicLayer.addLine([[103.786370, 30.385027], [103.904238, 30.510671]],{title:"测试",content:"<h3>${foo}</h3>"},{foo:"hello"})'>添加线</button>
+        <button
+        onclick='graphicLayer.addGon([[103.786370, 30.385027], [103.904238, 30.510671], [103.286370, 30.38]], { title: "测试", content: "<h3>${foo}</h3>" }, { foo: "hello" })'>添加面</button>
+        <button onclick="dijitLayer.measureDis()">测距</button>
+        <button onclick="dijitLayer.measureArea()">测面</button>
+        <button onclick="dijitLayer.clearMeas()">清除测距测面</button>
+    </div>
+    <div id='map' style="height: 100%;width:100%;background-color:darkgrey">
+
+    </div>
+    <!-- <canvas style="display: none" id='canvas'></canvas> -->
+</body>
+
+</html>
+<script>
+    var baseMap = null, // 底图
+        drawMap = null, // 绘制图层对象
+        graphicLayer = null,    // 要素图层对象
+        dijitLayer = null;  // 工具图层、测距测面
+    require(["BAMAP/BaseMap",
+        "BAMAP/DrawLayer",
+        "BAMAP/GraphicLayer",
+        "BAMAP/DijitLayer"
+    ], function (BaseMap, DrawLayer, GraphicLayer, DijitLayer) {
+        baseMap = new BaseMap("map", { center: [103.786370, 30.38], zoom: 9 }).init();
+        drawMap = new DrawLayer(baseMap)
+        dijitLayer = new DijitLayer(baseMap)
+        graphicLayer = new GraphicLayer({ id: 'test' })
+        baseMap.adbLayer(graphicLayer)
+    })
+</script>
