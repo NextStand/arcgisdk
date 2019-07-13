@@ -385,7 +385,27 @@ new DrawLayer(Map)
 
 释放绘制状态不清空绘制要素
 
-----------
+## 4.  Class: GraphicLayer（要素图层类）
+该图层类可根据坐标点绘制各种各样的要素，常用于绘制专题图层，该对象继承于GraphicsLayer对象，有关GraphicsLayer对象的信息，你可以戳[【这里】][6]
+
+【注意】该图层的方法需要调在实例添加到BaseMap中后才可以使用，也就是调用BaseMap的adbLayer方法之后
+
+#### 4.1 AMD Module Require
+```
+require(["BAMAP/GraphicLayer"], function(GraphicLayer) { /* code goes here */ });
+```
+#### 4.2 Constructors
+
+```
+new GraphicLayer(options?)
+```
+有关options的详情，戳[【这里】][7]
+#### 4.3 Method Details
+
   [1]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html
   [2]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1
   [3]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html#graphicslayer2
+  [4]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html#graphicslayer2
+  [5]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html#graphicslayer2
+  [6]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html
+  [7]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html#graphicslayer2
