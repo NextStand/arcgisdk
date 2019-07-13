@@ -213,10 +213,6 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).initTdt();
 **# addWMSLayer(url, name, extent, callback?)**
 
 添加WMS图层
-- url <String>    WMS图层服务地址
-- name <String>    命名空间:图层名称
-- extent <Object>    坐标范围{xmin, ymin, xmax, ymax}
-- callback <Function> 回调函数
 
 ----------
 
