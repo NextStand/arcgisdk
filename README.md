@@ -445,6 +445,7 @@ var attr = {foo:"hello"}
 - infoTemplate [Object] 信息框格式{title:标题，content:正文}
 - attr [Object] 该要素的属性值，供infoTemplate使用
 - symbol [Object] 要素样式{color:边线颜色，width：边线线宽，fillColor：填充色}
+
 【提示】这儿得颜色最好使用[R,G,B,A]的形式
 
 
@@ -458,6 +459,7 @@ var attr = {foo:"hello"}
 - infoTemplate [Object] 信息框格式{title:标题，content:正文}
 - attr [Object] 该要素的属性值，供infoTemplate使用
 - symbol [Object] 要素样式{color:边线颜色，width：边线线宽，fillColor：填充色}
+
 【提示】这儿得颜色最好使用[R,G,B,A]的形式
 
 
@@ -480,6 +482,7 @@ var attr = {foo:"hello"}
 - paths [Array] 线段坐标三维数组[[[x1,y1],[x2,y2]]]
 - symbol [Object] 要素样式{size：文字大小，family：文字字体，color：文字颜色}
 - offset [Object] 文字坐标偏移 {x：横向偏移，y:纵向偏移}
+
 【注意】该方法不要大数据量调用，大数据量有内存溢出风险
 
 
