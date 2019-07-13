@@ -496,6 +496,39 @@ var attr = {foo:"hello"}
 - symbol [Object] 要素样式{size：文字大小，family：文字字体，color：文字颜色}
 - offset [Object] 文字坐标偏移 {x：横向偏移，y:纵向偏移}
 
+## 5.  Class: DijitLayer（工具类）
+工具图层，比如测距，侧面，当然可以使用arcgis提供的原生的。
+实例化是时候传入BaseMap实例对象，不要将该类的实例作为图层叠加。
+
+
+
+#### 5.1 AMD Module Require
+```
+require(["BAMAP/DijitLayer"], function(DijitLayer) { /* code goes here */ });
+```
+#### 5.2 Constructors
+
+```
+new DijitLayer(Map)
+// Map为BaseMap类的实例
+```
+#### 5.3 Method Details
+**# measureDis()**
+
+测距
+
+
+----------
+**# measureArea()**
+
+测面
+
+
+----------
+**# clearMeas()**
+
+清空测量数据
+
 
 
   [1]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html
