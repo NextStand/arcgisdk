@@ -42,7 +42,15 @@
     - clear()    -- 清除绘制并释放绘制状态
     - clsAndte()    -- 清除绘制并保持绘制状态
     - deactivate()    -- 释放绘制状态不清空绘制要素
- - 列表项目
+ - GraphicLayer类（要素图层类）
+    - addPoint(lng, lat, infoTemplate?, attr?, symbol?, localAnim?)    -- 添加点要素
+    - addMultiPoint(points, infoTemplate?, attr?, symbol?)    -- 添加多点
+    - addLine(path, infoTemplate?, attr?, symbol?)    -- 添加线要素
+    - addGon(path, infoTemplate?, attr?, symbol?)    -- 添加面要素
+    - addCricle(lng, lat, radius?, infoTemplate?, attr?, symbol?)    -- 添加圆
+    - addText(text, lng, lat, symbol?, offset?)    -- 添加文字要素
+    - addFlowText(text, path, symbol?, offset?)    -- 添加流式文字/沿线文字(均分字间距)
+    - addSupFlowText(text, path, symbol?, offset?)    -- 添加流式文字/沿线文字(路径点坐标)
 
 ## 1. 使用步骤 ##
 
