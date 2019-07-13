@@ -219,6 +219,173 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).initTdt();
 - callback [Function] 回调函数
 ----------
 
+**# addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
+
+添加GeoJson点图层
+- name [String]    图层名称或id
+- url    [String]    服务或GeoJson文件的地址（同域）
+- infoTemplate1 [Object]    信息框内容
+- symbol [Object]    imgurl & heigth & width
+- callback [Function] 回调函数
+- options [Object] GraphicsLayer类的所有构造参数，[点击查看][3]
+- maxdraw [Int] 最大绘制量  default 1,000,000
+【注意】调用此API时候请添加以下两个引用
+
+```
+[script src="/arcgisdk/vendor/terraformer/terraformer.min.js"][/script]
+[script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"][/script]
+```
+
+```
+var infoTemplate1 = {
+    title: "地块信息",
+    content: "地块编码：${DKBM}[br/]面积（亩）：${面积亩}"
+}
+var symbol={
+    imgurl:"/static/map/img/local-marker.png",
+    width:10,
+    height:10
+}
+baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTemplate1, symbol, function (layer) {/* code goes here */ });
+```
+
+
+----------
+
+**# addLineGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
+
+添加GeoJson点图层
+- name [String]    图层名称或id
+- url    [String]    服务或GeoJson文件的地址（同域）
+- infoTemplate1 [Object]    信息框内容
+- symbol [Object]    color & width
+- callback [Function] 回调函数
+- options [Object] GraphicsLayer类的所有构造参数，[点击查看][3]
+- maxdraw [Int] 最大绘制量  default 1,000,000
+
+【注意】调用此API时候请添加以下两个引用
+
+```
+[script src="/arcgisdk/vendor/terraformer/terraformer.min.js"][/script]
+[script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"][/script]
+```
+----------
+
+**# addGonGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)**
+
+添加GeoJson面图层
+- name [String]    图层名称或id
+- url    [String]    服务或GeoJson文件的地址（同域）
+- infoTemplate1 [Object]    信息框内容
+- symbol [Object]    color & width & fillcolor [255, 255, 0, 0.25]
+- callback [Function] 回调函数
+- options [Object] GraphicsLayer类的所有构造参数，[点击查看][3]
+- maxdraw [Int] 最大绘制量  default 1,000,000
+
+【注意】调用此API时候请添加以下两个引用
+
+```
+[script src="/arcgisdk/vendor/terraformer/terraformer.min.js"][/script]
+[script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"][/script]
+```
+## 3.  Class: DrawLayer（绘制类）
+图形绘制类，该类中封装了一些常用的绘制方法；实例化是时候传入BaseMap实例对象，不要将该类的实例作为图层叠加。
+
+#### 3.1 AMD Module Require
+```
+require(["BAMAP/DrawLayer"], function(DrawLayer) { /* code goes here */ });
+```
+#### 3.2 Constructors
+
+```
+new DrawLayer(Map)
+// Map为BaseMap类的实例
+```
+#### 3.3 Method Details
+**# drawPoint(callback?)**
+
+绘制点
+- callback [Function] 绘制完成的回调函数,相关的绘制信息以回调参数对象传入
+
+----------
+**# drawMultiPoint(callback?)**
+
+绘制多点
+- callback [Function] 绘制完成的回调函数,相关的绘制信息以回调参数对象传入
+
+----------
+**# drawLine(callback?)**
+
+绘制直线段
+- callback [Function] 绘制完成的回调函数,相关的绘制信息以回调参数对象传入
+
+----------
+**# drawPolyLine(callback?)**
+
+绘制折线
+- callback [Function] 绘制完成的回调函数,相关的绘制信息以回调参数对象传入
+
+----------
+
+**# drawPolyGon(callback?)**
+
+绘制多边形
+- callback [Function] 绘制完成的回调函数,相关的绘制信息以回调参数对象传入
+
+----------
+
+**# drawFreePolyGon(callback?)**
+
+手绘多边形
+- callback [Function] 绘制完成的回调函数,相关的绘制信息以回调参数对象传入
+
+----------
+**# drawArrow(callback?)**
+
+绘制箭头
+- callback [Function] 绘制完成的回调函数,相关的绘制信息以回调参数对象传入
+
+----------
+**# drawTrianGle(callback?)**
+
+绘制三角形
+- callback [Function] 绘制完成的回调函数,相关的绘制信息以回调参数对象传入
+
+----------
+**# drawCircle(callback?)**
+
+绘制圆形
+- callback [Function] 绘制完成的回调函数,相关的绘制信息以回调参数对象传入
+
+----------
+**# drawEllipse(callback?)**
+
+绘制椭圆
+- callback [Function] 绘制完成的回调函数,相关的绘制信息以回调参数对象传入
+
+----------
+
+**# drawRectangle(callback?)**
+
+绘制矩形
+- callback [Function] 绘制完成的回调函数,相关的绘制信息以回调参数对象传入
+
+----------
+**# clear()**
+
+清除绘制图层并释放绘制状态
+
+----------
+**# clsAndte()**
+
+清除绘制并保持绘制状态
+
+----------
+**# deactivate()**
+
+释放绘制状态不清空绘制要素
+
+----------
   [1]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html
   [2]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1
   [3]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html#graphicslayer2
