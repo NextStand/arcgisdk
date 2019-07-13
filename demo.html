@@ -29,11 +29,13 @@
         <button onclick="drawMap.drawCircle()">绘制圆形</button>
         <button onclick="drawMap.drawPolyGon()">绘制多边形</button>
         <button
-        onclick='graphicLayer.addPoint(103.786370, 30.38, {title:"测试",content:"<h3>${foo}</h3>"},{foo:"hello"},null,true)'>添加点</button>
+            onclick='graphicLayer.addPoint(103.786370, 30.38, {title:"测试",content:"<h3>${foo}</h3>"},{foo:"hello"},null,true)'>添加点</button>
         <button
-        onclick='graphicLayer.addLine([[103.786370, 30.385027], [103.904238, 30.510671]],{title:"测试",content:"<h3>${foo}</h3>"},{foo:"hello"})'>添加线</button>
+            onclick='graphicLayer.addLine([[103.786370, 30.385027], [103.904238, 30.510671]],{title:"测试",content:"<h3>${foo}</h3>"},{foo:"hello"})'>添加线</button>
         <button
-        onclick='graphicLayer.addGon([[103.786370, 30.385027], [103.904238, 30.510671], [103.286370, 30.38]], { title: "测试", content: "<h3>${foo}</h3>" }, { foo: "hello" })'>添加面</button>
+            onclick='graphicLayer.addGon([[103.786370, 30.385027], [103.904238, 30.510671], [103.286370, 30.38]], { title: "测试", content: "<h3>${foo}</h3>" }, { foo: "hello" })'>添加面</button>
+        <button
+            onclick='graphicLayer.addMultiPoint([[103.786370, 30.38], [103.786370, 30.385027], [103.904238, 30.510671], [103.924238, 30.510671]],{title:"测试",content:"<h3>${foo}</h3>"},{foo:"hello"})'>添加多点</button>
         <button onclick="dijitLayer.measureDis()">测距</button>
         <button onclick="dijitLayer.measureArea()">测面</button>
         <button onclick="dijitLayer.clearMeas()">清除测距测面</button>
@@ -55,10 +57,14 @@
         "BAMAP/GraphicLayer",
         "BAMAP/DijitLayer"
     ], function (BaseMap, DrawLayer, GraphicLayer, DijitLayer) {
-        baseMap = new BaseMap("map", { center: [103.786370, 30.38], zoom: 9 }).init();
+        baseMap = new BaseMap("map", { center: [103.786370, 30.38], zoom: 9 }).initTdt();
         drawMap = new DrawLayer(baseMap)
         dijitLayer = new DijitLayer(baseMap)
         graphicLayer = new GraphicLayer({ id: 'test' })
         baseMap.adbLayer(graphicLayer)
+
+        // 沿线标注例子
+        graphicLayer.addLine([[103.786370, 30.38], [103.786370, 30.385027], [103.904238, 30.510671], [103.924238, 30.510671]])
+        graphicLayer.addSupFlowText('你好', [[[103.786370, 30.38], [103.786370, 30.385027], [103.904238, 30.510671], [103.924238, 30.510671]]])
     })
 </script>
