@@ -1,9 +1,9 @@
 # ArcGis for JavaScript SDK
-> 作者：BLUE
+] 作者：BLUE
 
-> 日期：2019-07-09
+] 日期：2019-07-09
 
-> 描述：arcgis for js 开发包,基于arcgis for js 3.9
+] 描述：arcgis for js 开发包,基于arcgis for js 3.9
 
 该开发包是基于arcgis for javascript 3.9，是对原始API的一个扩充，原始API正常使用，该SDK仅封装了开发过程中常用的方法，开发包内使用瓦片下载的方式对全国天地图底图进行加载，默认坐标系为**WGS 84**,如果你是**CGCS2000坐标系**，那你可以放心使用；如果需要使用其他REST服务作为底图，咱们另说。
 
@@ -66,30 +66,30 @@
 
 简洁版资源：
 ```
-<link rel="stylesheet" type="text/css" href="/arcgisdk/3.9compact/js/esri/css/esri.css" />
-<script type="text/javascript" src="/arcgisdk/3.9compact/init.js"></script>
+[link rel="stylesheet" type="text/css" href="/arcgisdk/3.9compact/js/esri/css/esri.css" /]
+[script type="text/javascript" src="/arcgisdk/3.9compact/init.js"][/script]
 ```
 完整版资源：
 ```
-<link rel="stylesheet" type="text/css" href="/arcgisdk/3.9/js/esri/css/esri.css" />
-<script type="text/javascript" src="/arcgisdk/3.9/init.js"></script>
+[link rel="stylesheet" type="text/css" href="/arcgisdk/3.9/js/esri/css/esri.css" /]
+[script type="text/javascript" src="/arcgisdk/3.9/init.js"][/script]
 ```
 
  - 修改SDK包源码引用
 
    
 
->  若你是使用的完整版请将 **/arcgisdk/3.9compact/init.js** 和 **/arcgisdk/3.9compact/js/dojo/dojo/dojo.js** 中的 **localhost:8009** 修改成你的项目地址和端口
+]  若你是使用的完整版请将 **/arcgisdk/3.9compact/init.js** 和 **/arcgisdk/3.9compact/js/dojo/dojo/dojo.js** 中的 **localhost:8009** 修改成你的项目地址和端口
 
->  若你是使用的是完整版请将 **/arcgisdk/3.9/init.js** 和 **/arcgisdk/3.9/js/dojo/dojo/dojo.js** 中的 **localhost:8009** 修改成你的项目地址和端口
+]  若你是使用的是完整版请将 **/arcgisdk/3.9/init.js** 和 **/arcgisdk/3.9/js/dojo/dojo/dojo.js** 中的 **localhost:8009** 修改成你的项目地址和端口
 
  - 请开始你的代码，下面是个初始化例子
 
 ```
-<!--创建一个具有id属性的div-->
-<div id='map' style="height: 100%;width:100%;background-color:darkgrey"></div>
+[!--创建一个具有id属性的div--]
+[div id='map' style="height: 100%;width:100%;background-color:darkgrey"][/div]
 
-<script>
+[script]
     // 创建一个全局对象用于存储基础地图对象
     var baseMap = null;
     // 引入BaseMap模块
@@ -98,7 +98,7 @@
         // 实例化一个基础底图类
         baseMap = new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
     })
-</script>
+[/script]
 ```
 
 ## 2.  Class: BaseMap（基础底图类）
@@ -131,9 +131,9 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).initTdt();
 初始化有公开的缓存映射服务资源作为底图
 
 【提示】默认加载成都天地图作为底图，不保证永远能成功，如果服务被关闭则加载会失败
-- sldtserver <String> 【电子底图服务地址】
-- slbzserver <String> 【矢量标注服务地址】
-- yxdtserver <String> 【影像底图服务地址】
+- sldtserver [String] 电子底图服务地址
+- slbzserver [String] 矢量标注服务地址
+- yxdtserver [String] 影像底图服务地址
 
 
 ----------
@@ -142,7 +142,7 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).initTdt();
 **# changeBaseMap(id)**
 
 切换底图类型
-- id <String> 【底图类型标识】 sldt-矢量底图,imgdt-影像底图,dxdt-地形底图
+- id [String] 底图类型标识 sldt-矢量底图,imgdt-影像底图,dxdt-地形底图
 
 
 ----------
@@ -160,9 +160,9 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).initTdt();
 
 将底图中心定位到指定位置
 
-- lng <Float>    经度
-- lat <Float>    纬度
-- zoom <Int>    缩放层级  默认当前层级
+- lng [Float]    经度
+- lat [Float]    纬度
+- zoom [Int]    缩放层级  默认当前层级
 
 
 ----------
@@ -170,50 +170,50 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).initTdt();
 
 特殊的附加图层，可用于图层管理，不建议直接使用原型的添加图层方法
 
-- layer <Layer>    所有继承于 esri/layers 的实例
-- index <Int>    图层层级，值越大越靠近用户
+- layer [Layer]    所有继承于 esri/layers 的实例
+- index [Int]    图层层级，值越大越靠近用户
 ----------
 **# hideAttachLayer(name)**
 
 隐藏附加图层，只针对 adbLayer 方法添加的图层有效
-- name <String>    图层名称或者id
+- name [String]    图层名称或者id
 
 
 ----------
 **# showAttachLayer(name)**
 
 显示附加图层，只针对 adbLayer 方法添加的图层有效
-- name <String>    图层名称或者id
+- name [String]    图层名称或者id
 
 ----------
 **# destoryAttachLayer(name)**
 
 销毁附加图层，只针对 adbLayer 方法添加的图层有效
-- name <String>    图层名称或者id
+- name [String]    图层名称或者id
 
 ----------
 **# hasLayer(name)**
 
 判断图层是否存在，只针对 adbLayer 方法添加的图层有效
-- name <String>    图层名称或者id
+- name [String]    图层名称或者id
 
 ----------
 **# zoomIn(zoom)**
 
 地图放大
-- zoom <Number>    放大层级
+- zoom [Number]    放大层级
 
 ----------
 **# zoomOut(zoom)**
 
 地图缩小
-- zoom <Number>    缩小层级
+- zoom [Number]    缩小层级
 
 ----------
 **# addWMSLayer(url, name, extent, callback?)**
 
 添加WMS图层
-- url <String>    WMS图层服务地址
+- url [String]    WMS图层服务地址
 - name [String]    命名空间:图层名称
 ----------
 
