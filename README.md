@@ -51,6 +51,11 @@
     - addText(text, lng, lat, symbol?, offset?)    -- 添加文字要素
     - addFlowText(text, path, symbol?, offset?)    -- 添加流式文字/沿线文字(均分字间距)
     - addSupFlowText(text, path, symbol?, offset?)    -- 添加流式文字/沿线文字(路径点坐标)
+  
+- DijitLayer类（工具类）
+    - measureDis()    -- 测距
+    - measureArea()    -- 测面
+    - clearMeas()    -- 清空测量数据
 
 ## 1. 使用步骤 ##
 
