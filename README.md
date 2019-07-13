@@ -28,20 +28,20 @@
     - addLineGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson线图层
     - addGonGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson线图层
  - DrawLayer类（绘制类）
-  - drawPoint（callback?）    -- 绘制点
-  - drawMultiPoint（callback?）    --绘制多点
-  - drawLine（callback?)    -- 绘制直线段
-  - drawPolyLine（callback?）    -- 绘制折线
-  - drawPolyGon（callback?）    -- 绘制多边形
-  - drawFreePolyGon(callback?)    -- 手绘多边形
-  - drawArrow(callback?)    -- 绘制箭头
-  - drawTrianGle(callback?)    -- 绘制三角形
-  - drawCircle(callback?)    -- 绘制圆形
-  - drawEllipse(callback?)    -- 绘制椭圆
-  - drawRectangle(callback?)  -- 绘制矩形
-  - clear()    -- 清除绘制并释放绘制状态
-  - clsAndte()    -- 清除绘制并保持绘制状态
-  - deactivate()    -- 释放绘制状态不清空绘制要素
+    - drawPoint（callback?）    -- 绘制点
+    - drawMultiPoint（callback?）    --绘制多点
+    - drawLine（callback?)    -- 绘制直线段
+    - drawPolyLine（callback?）    -- 绘制折线
+    - drawPolyGon（callback?）    -- 绘制多边形
+    - drawFreePolyGon(callback?)    -- 手绘多边形
+    - drawArrow(callback?)    -- 绘制箭头
+    - drawTrianGle(callback?)    -- 绘制三角形
+    - drawCircle(callback?)    -- 绘制圆形
+    - drawEllipse(callback?)    -- 绘制椭圆
+    - drawRectangle(callback?)  -- 绘制矩形
+    - clear()    -- 清除绘制并释放绘制状态
+    - clsAndte()    -- 清除绘制并保持绘制状态
+    - deactivate()    -- 释放绘制状态不清空绘制要素
  - 列表项目
 
 ## 1. 使用步骤 ##
