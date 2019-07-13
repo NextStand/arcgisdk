@@ -10,6 +10,7 @@ define([
     "esri/geometry/ScreenPoint",
     "esri/geometry/Polyline",
     "esri/geometry/Polygon",
+    "esri/geometry/Circle",
     "esri/symbols/TextSymbol",
     "esri/symbols/PictureMarkerSymbol",
     "esri/symbols/SimpleLineSymbol",
@@ -21,7 +22,7 @@ define([
     "esri/SpatialReference",
     "dojo/domReady!"
 ], function (declare, GraphicsLayer, Point, ScreenPoint, Polyline,
-    Polygon, TextSymbol, PictureMarkerSymbol, SimpleLineSymbol,
+    Polygon, Circle, TextSymbol, PictureMarkerSymbol, SimpleLineSymbol,
     SimpleFillSymbol, Font, Graphic, Color, InfoTemplate, SpatialReference) {
         return declare('GraphicLayer', GraphicsLayer, {
             __version: 'V1.1.8',
@@ -47,8 +48,8 @@ define([
                         graphic = new Graphic(pt, symbol);
                     if (infoTemplate.hasOwnProperty('content')) {
                         var infoTemplate = new InfoTemplate(infoTemplate.title || '标题', infoTemplate.content);
-                        graphic.setAttributes(attr)
-                        graphic.setInfoTemplate(infoTemplate)
+                        graphic.setAttributes(attr);
+                        graphic.setInfoTemplate(infoTemplate);
                     }
                     if (localAnim) {
                         var localSymbol = new PictureMarkerSymbol("/arcgisdk/images/local-anim.gif", 30, 30);
@@ -60,16 +61,36 @@ define([
                         }, 2000);
                     } else {
                         ctx.add(graphic);
+                        ctx.__setCursor();
                     }
-                    this.on('mouse-over', function (evt) {
-                        map.setMapCursor("pointer");
-                    })
-                    this.on('mouse-out', function (e) {
-                        map.setMapCursor("default");
-                    })
+
                 } else {
                     throw new Error('The lng and lat parameter is required')
                 }
+            },
+
+            /**
+             * 添加多点
+             * @param {Array} points 二维点数组
+             * @param {*} infoTemplate {title:信息框标题，content:信息框正文，用${变量名}引用attr中的变量}
+             * @param {*} attr 要素的属性值，供infoTemplate使用
+             * @param {*} symbol 要素样式{url:图片路径，width：宽，height:高}
+             */
+            addMultiPoint: function (points, infoTemplate, attr, symbol) {
+                var map = this.getMap(),
+                    symbol = symbol || {},
+                    infoTemplate = infoTemplate || {},
+                    mpJson = { "points": points, "spatialReference": (map.spatialReference) },
+                    multipoint = new Multipoint(mpJson),
+                    symbol = new PictureMarkerSymbol(symbol.imgurl || "/arcgisdk/images/local-marker.png", symbol.width || 25, symbol.height || 25),
+                    graphic = new Graphic(multipoint, symbol);
+                if (infoTemplate.hasOwnProperty('content')) {
+                    var infoTemplate = new InfoTemplate(infoTemplate.title || '标题', infoTemplate.content);
+                    graphic.setAttributes(attr);
+                    graphic.setInfoTemplate(infoTemplate);
+                }
+                this.add(graphic)
+                this.__setCursor();
             },
 
             /**
@@ -94,16 +115,11 @@ define([
                         graphic = new Graphic(polyline, sls);
                     if (infoTemplate.hasOwnProperty('content')) {
                         var infoTemplate = new InfoTemplate(infoTemplate.title || '标题', infoTemplate.content);
-                        graphic.setAttributes(attr)
-                        graphic.setInfoTemplate(infoTemplate)
+                        graphic.setAttributes(attr);
+                        graphic.setInfoTemplate(infoTemplate);
                     }
                     ctx.add(graphic);
-                    this.on('mouse-over', function (evt) {
-                        map.setMapCursor("pointer");
-                    })
-                    this.on('mouse-out', function (e) {
-                        map.setMapCursor("default");
-                    })
+                    this.__setCursor();
                 } else {
                     throw new Error('The path parameter is required')
                 }
@@ -129,16 +145,11 @@ define([
                         graphic = new Graphic(polygon, sfs);
                     if (infoTemplate.hasOwnProperty('content')) {
                         var infoTemplate = new InfoTemplate(infoTemplate.title || '标题', infoTemplate.content);
-                        graphic.setAttributes(attr)
-                        graphic.setInfoTemplate(infoTemplate)
+                        graphic.setAttributes(attr);
+                        graphic.setInfoTemplate(infoTemplate);
                     }
                     this.add(graphic);
-                    this.on('mouse-over', function (evt) {
-                        map.setMapCursor("pointer");
-                    })
-                    this.on('mouse-out', function (e) {
-                        map.setMapCursor("default");
-                    })
+                    this.__setCursor();
                 } else {
                     throw new Error('The path parameter is required')
                 }
@@ -167,8 +178,8 @@ define([
                         graphic = new Graphic(circle, sfs);
                     if (infoTemplate.hasOwnProperty('content')) {
                         var infoTemplate = new InfoTemplate(infoTemplate.title || '标题', infoTemplate.content);
-                        graphic.setAttributes(attr)
-                        graphic.setInfoTemplate(infoTemplate)
+                        graphic.setAttributes(attr);
+                        graphic.setInfoTemplate(infoTemplate);
                     }
                     this.add(graphic);
                     this.__setCursor();
@@ -374,5 +385,17 @@ define([
                 lineLength = parseInt(lineLength);
                 return lineLength;
             },
+            /**
+             * 设置鼠标样式
+             */
+            __setCursor: function () {
+                var map = this.getMap()
+                this.on('mouse-over', function (evt) {
+                    map.setMapCursor("pointer");
+                })
+                this.on('mouse-out', function (e) {
+                    map.setMapCursor("default");
+                })
+            }
         })
     })
