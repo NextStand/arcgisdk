@@ -401,6 +401,99 @@ new GraphicLayer(options?)
 ```
 有关options的详情，戳[【这里】][7]
 #### 4.3 Method Details
+**# addPoint(lng, lat, infoTemplate?, attr?, symbol?, localAnim?)**
+
+添加点要素
+- lng [Float] 经度
+- lat [Float] 纬度
+- infoTemplate [Object] 信息框格式{title:标题，content:正文}
+- attr [Object] 该要素的属性值，供infoTemplate使用
+- symbol [Object] 点样式{url:图片路径，width：宽，height:高}
+- localAnim [Boolean] 动画，可用于定位的时候，默认为false
+
+```
+var infoTemplate = {title:"测试",content:"<h3>${foo}</h3>"};
+var attr = {foo:"hello"}
+```
+
+
+----------
+**# addMultiPoint(points, infoTemplate?, attr?, symbol?)**
+
+添加多点要素
+- points [Array] 二维经纬度数组
+- infoTemplate [Object] 信息框格式{title:标题，content:正文}
+- attr [Object] 该要素的属性值，供infoTemplate使用
+- symbol [Object] 点样式{url:图片路径，width：宽，height:高}
+
+
+----------
+**# addLine(path, infoTemplate?, attr?, symbol?)**
+
+添加线要素
+- path [Array] 路径二维经纬度数组
+- infoTemplate [Object] 信息框格式{title:标题，content:正文}
+- attr [Object] 该要素的属性值，供infoTemplate使用
+- symbol [Object] 要素样式{color:颜色，width：线宽}
+
+
+----------
+**# addGon(path, infoTemplate?, attr?, symbol?)**
+
+添加面要素
+- path [Array] 路径二维经纬度数组
+- infoTemplate [Object] 信息框格式{title:标题，content:正文}
+- attr [Object] 该要素的属性值，供infoTemplate使用
+- symbol [Object] 要素样式{color:边线颜色，width：边线线宽，fillColor：填充色}
+【提示】这儿得颜色最好使用[R,G,B,A]的形式
+
+
+----------
+**# addCricle(lng, lat, radius, infoTemplate?, attr?, symbol?)**
+
+添加圆要素
+- lng [Float] 经度
+- lat [Float] 纬度
+- radius [Number] 半径（米） 默认1000
+- infoTemplate [Object] 信息框格式{title:标题，content:正文}
+- attr [Object] 该要素的属性值，供infoTemplate使用
+- symbol [Object] 要素样式{color:边线颜色，width：边线线宽，fillColor：填充色}
+【提示】这儿得颜色最好使用[R,G,B,A]的形式
+
+
+----------
+**# addText(text, lng, lat, symbol?,offset?)**
+
+添加文字要素
+- text [String] 文字内容
+- lng [Float] 经度
+- lat [Float] 纬度
+- symbol [Object] 要素样式{size：文字大小，family：文字字体，color：文字颜色}
+- offset [Object] 文字坐标偏移 {x：横向偏移，y:纵向偏移}
+
+
+----------
+**# addFlowText(text, paths, symbol?,offset?)**
+
+添加流式文字/沿线文字,均分文字间距
+- text [String] 文字内容
+- paths [Array] 线段坐标三维数组[[[x1,y1],[x2,y2]]]
+- symbol [Object] 要素样式{size：文字大小，family：文字字体，color：文字颜色}
+- offset [Object] 文字坐标偏移 {x：横向偏移，y:纵向偏移}
+【注意】该方法不要大数据量调用，大数据量有内存溢出风险
+
+
+----------
+**# addSupFlowText(text, paths, symbol?,offset?)**
+
+添加流式文字/沿线文字
+该方法适用于线的坐标点数量大于文字数量时候，并不是均分文字间距
+- text [String] 文字内容
+- paths [Array] 线段坐标三维数组[[[x1,y1],[x2,y2]]]
+- symbol [Object] 要素样式{size：文字大小，family：文字字体，color：文字颜色}
+- offset [Object] 文字坐标偏移 {x：横向偏移，y:纵向偏移}
+
+
 
   [1]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html
   [2]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1
