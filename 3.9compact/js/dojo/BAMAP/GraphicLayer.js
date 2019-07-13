@@ -191,11 +191,11 @@ define([
 
             /**
              * 添加文字要素
+             * @param {String} text 文字内容
              * @param {Number} lng 经度
              * @param {Number} lat 纬度
-             * @param {String} text 文字内容
              * @param {Object} symbol 文字样式配置 {size：文字大小，family：文字字体，color：文字颜色}
-             * @param {Object} offset 文字坐标便宜 {x：横向便宜，y:纵向偏移}
+             * @param {Object} offset 文字坐标偏移 {x：横向偏移，y:纵向偏移}
              */
             addText: function (text, lng, lat, symbol, offset) {
                 if (lng && lat && text) {
