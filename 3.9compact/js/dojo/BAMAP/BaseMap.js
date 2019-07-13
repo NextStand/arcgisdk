@@ -6,6 +6,7 @@
 define([
     "dojo/_base/declare",
     "esri/map",
+    "esri/layers/ArcGISTiledMapServiceLayer",
     "esri/geometry/Point",
     "esri/SpatialReference",
     "esri/dijit/Scalebar",
@@ -24,7 +25,7 @@ define([
     "tdt/LandFormLayer",
     "geojson/src/geojsonlayer",
     "dojo/domReady!"
-], function (declare, Map, Point, SpatialReference, Scalebar, WMSLayer, WMSLayerInfo, Extent,
+], function (declare, Map, ArcGISTiledMapServiceLayer, Point, SpatialReference, Scalebar, WMSLayer, WMSLayerInfo, Extent,
     SimpleRenderer, SimpleLineSymbol, PictureMarkerSymbol, SimpleFillSymbol, Color, InfoTemplate, TDTLayer, TDTAnnoLayer, ImageLayer,
     LandFormLayer, GeoJsonLayer) {
         return declare('BaseMap', [Map], {
@@ -36,12 +37,12 @@ define([
                 this.__label = true;
             },
             /**
-             * 初始化地图，比较特殊
+             * 初始化全国天地图底图
              */
-            init: function () {
+            initTdt: function () {
                 var ctx = this;
                 new Scalebar({
-                    map: this,//地图对象  
+                    map: ctx,//地图对象  
                     attachTo: "bottom-left",//控件的位置，右下角  
                     scalebarStyle: "line",//ruler 比例尺样式类型  
                     scalebarUnit: "dual"//显示地图的单位，这里是km  metric,
@@ -61,6 +62,38 @@ define([
                 ctx.__MapURLarray.imgdt.hide(); ctx.__MapURLarray.dxdt.hide();
                 return this;
             },
+            /**
+             * 加载公开的缓存映射服务资源作为底图
+             * @param {String} sldtserver 电子底图服务地址
+             * @param {String} slbzserver 矢量标注服务地址
+             * @param {String} yxdtserver 影像底图服务地址
+             */
+            initTiledMap: function (sldtserver,slbzserver,yxdtserver) {
+
+                var ctx = this,
+                    sldt = sldtserver || 'http://www.tianditucd.cn:8108/mzjs234basemapvector/arcgis/rest/services/BASEMAP/Vector/MapServer',
+                    slbz = slbzserver || 'http://www.tianditucd.cn:8108/mzjs234basemapraster/arcgis/rest/services/BASEMAP/Raster/MapServer',
+                    imgdt = yxdtserver || 'http://www.tianditucd.cn:8108/mzjs234basemaprasterlab/arcgis/rest/services/BASEMAP/RasterLab/MapServer',
+                    // 电子底图
+                    basemap = new ArcGISTiledMapServiceLayer(sldt, { id: 'sldt' }),
+                    // 添加天地图矢量标注
+                    annolayer = new ArcGISTiledMapServiceLayer(slbz, { id: 'slbz' }),
+                    // 影像底图
+                    imagelayer = new ArcGISTiledMapServiceLayer(imgdt, { id: 'imgdt' });
+                new Scalebar({
+                    map: ctx,//地图对象  
+                    attachTo: "bottom-left",//控件的位置，右下角  
+                    scalebarStyle: "line",//ruler 比例尺样式类型  
+                    scalebarUnit: "dual"//显示地图的单位，这里是km  metric,
+                });
+                ctx.__MapURLarray = { sldt: basemap, slbz: annolayer, imgdt: imagelayer }
+                ctx.addLayer(ctx.__MapURLarray.sldt, 0);
+                ctx.addLayer(ctx.__MapURLarray.imgdt, 1);
+                ctx.addLayer(ctx.__MapURLarray.slbz, 2);
+                ctx.__MapURLarray.imgdt.hide();
+                return this;
+            },
+
             /**
              * 切换底图
              * @param {String} id 地图id sldt-矢量底图,imgdt-影像底图,dxdt-地形底图
