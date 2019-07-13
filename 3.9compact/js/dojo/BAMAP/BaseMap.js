@@ -36,6 +36,7 @@ define([
                 this.__AttachLayers = {};
                 this.__label = true;
             },
+            
             /**
              * 初始化全国天地图底图
              */
@@ -62,6 +63,7 @@ define([
                 ctx.__MapURLarray.imgdt.hide(); ctx.__MapURLarray.dxdt.hide();
                 return this;
             },
+
             /**
              * 加载公开的缓存映射服务资源作为底图
              * @param {String} sldtserver 电子底图服务地址
