@@ -213,7 +213,8 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).initTdt();
 **# addWMSLayer(url, name, extent, callback?)**
 
 添加WMS图层
-- zoom <String>    WMS图层服务地址
+- url <String>    WMS图层服务地址
+- name <String>    命名空间:图层名称
 ----------
 
   [1]: https://developers.arcgis.com/javascript/3/jsapi/map-amd.html
