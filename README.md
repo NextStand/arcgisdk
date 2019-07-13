@@ -66,13 +66,13 @@
 
 简洁版资源：
 ```
-[link rel="stylesheet" type="text/css" href="/arcgisdk/3.9compact/js/esri/css/esri.css" /]
-[script type="text/javascript" src="/arcgisdk/3.9compact/init.js"][/script]
+<link rel="stylesheet" type="text/css" href="/arcgisdk/3.9compact/js/esri/css/esri.css" />
+<script type="text/javascript" src="/arcgisdk/3.9compact/init.js"></script>
 ```
 完整版资源：
 ```
-[link rel="stylesheet" type="text/css" href="/arcgisdk/3.9/js/esri/css/esri.css" /]
-[script type="text/javascript" src="/arcgisdk/3.9/init.js"][/script]
+<link rel="stylesheet" type="text/css" href="/arcgisdk/3.9/js/esri/css/esri.css" />
+<script type="text/javascript" src="/arcgisdk/3.9/init.js"></script>
 ```
 
  - 修改SDK包源码引用
