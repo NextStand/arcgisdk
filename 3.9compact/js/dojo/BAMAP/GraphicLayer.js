@@ -85,7 +85,7 @@ define([
                         map = ctx.getMap(),
                         symbol = symbol || {},
                         infoTemplate = infoTemplate || {},
-                        polyline = new Polyline({ paths: [path], spatialReference: map.spatialReference }),
+                        polyline = new Polyline({ path: [path], spatialReference: map.spatialReference }),
                         sls = new SimpleLineSymbol(
                             SimpleLineSymbol.STYLE_SOLID,
                             new Color(symbol.color || "#3edc42"),
@@ -176,16 +176,16 @@ define([
              * 添加流式文字/沿线文字,均分文字间距
              * 该方法不要大数据量调用，大数据量有内存溢出风险
              * @param {String} text 文字内容
-             * @param {*} paths   线段坐标三维数组 [[[103.786370, 30.38],[103.786370, 30.385027], [103.904238, 30.510671]]]
+             * @param {*} path   线段坐标三维数组 [[[103.786370, 30.38],[103.786370, 30.385027], [103.904238, 30.510671]]]
              * @param {*} symbol  文字样式配置 {size：文字大小，family：文字字体，color：文字颜色}
              * @param {*} offset  文字坐标偏移 {x：横向偏移，y:纵向偏移}
              */
-            addFlowText: function (text, paths, symbol, offset) {
-                if (text && paths) {
+            addFlowText: function (text, path, symbol, offset) {
+                if (text && path) {
                     var map = this.getMap(),
                         symbol = symbol || {},
                         offset = offset || {};
-                    paths.forEach(x => {
+                    path.forEach(x => {
                         for (var i = 0; i < x.length; i++) {
                             var pt = new Point(x[i][0], x[i][1], new SpatialReference(map.spatialReference)),
                                 scpt = map.toScreen(pt);
@@ -193,12 +193,12 @@ define([
                             x[i][1] = scpt.y;
                         }
                     })
-                    var lineLength = this.getLineLength(paths),
+                    var lineLength = this.getLineLength(path),
                         arr = text.split(''),
                         //求出步进
                         wd = Math.ceil(lineLength / (arr.length + 1)),
                         _mArr = [];
-                    this._textLocal4Line(wd, paths[0], _mArr);
+                    this._textLocal4Line(wd, path[0], _mArr);
                     for (var i = 0; i < arr.length; i++) {
                         var _mp = map.toMap(new ScreenPoint(_mArr[i]));
                         if (isNaN(_mp.x) || isNaN(_mp.y)) continue;
@@ -207,7 +207,7 @@ define([
                             { x: offset.x, y: offset.y });
                     }
                 } else {
-                    throw new Error('The text and paths parameter is required')
+                    throw new Error('The text and path parameter is required')
                 }
 
             },
@@ -216,16 +216,16 @@ define([
              * 添加流式文字/沿线文字 该方法适用于线的坐标点数量大于文字数量时候，并不是均分文字间距
              * 不会有内存溢出风险
              * @param {String} text 文字内容
-             * @param {*} paths   线段坐标三维数组 [[[103.786370, 30.38],[103.786370, 30.385027], [103.904238, 30.510671]]]
+             * @param {*} path   线段坐标三维数组 [[[103.786370, 30.38],[103.786370, 30.385027], [103.904238, 30.510671]]]
              * @param {*} symbol  文字样式配置 {size：文字大小，family：文字字体，color：文字颜色}
              * @param {*} offset  文字坐标偏移 {x：横向偏移，y:纵向偏移}
              */
 
-            addSupFlowText(text, paths, symbol, offset) {
+            addSupFlowText(text, path, symbol, offset) {
                 var map = this.getMap(),
                     symbol = symbol || {},
                     offset = offset || {};
-                paths.forEach(x => {
+                path.forEach(x => {
                     for (var i = 0; i < x.length; i++) {
                         var pt = new Point(x[i][0], x[i][1], new SpatialReference(map.spatialReference)),
                             scpt = map.toScreen(pt);
@@ -233,12 +233,12 @@ define([
                         x[i][1] = scpt.y;
                     }
                 })
-                var lineLength = this.getLineLength(paths),
+                var lineLength = this.getLineLength(path),
                     arr = text.split(''),
                     //求出步进
                     wd = Math.ceil(lineLength / (arr.length + 1)),
                     //计算每个字坐标
-                    _mArr = this._textLocal4LineLength(paths, wd);
+                    _mArr = this._textLocal4LineLength(path, wd);
                 for (var i = 0; i < arr.length; i++) {
                     var _mp = baseMap.toMap(new ScreenPoint(_mArr[i]));
                     if (isNaN(_mp.x) || isNaN(_mp.y)) continue;
@@ -251,13 +251,13 @@ define([
             /**
              * 通过长度来确定坐标，文字非均等份，非递归，
              * 大量数据不会造成栈溢出
-             * @param {*} paths 
+             * @param {*} path 
              * @param {*} wd 
              */
-            _textLocal4LineLength(paths, wd) {
+            _textLocal4LineLength(path, wd) {
                 var lineLength = 0,
                     mArr1 = [];
-                paths.forEach(x => {
+                path.forEach(x => {
                     for (var i = 0; i < x.length - 1; i++) {
                         var diffX = x[i + 1][0] - x[i][0],
                             diffY = x[i + 1][1] - x[i][1];
@@ -275,28 +275,28 @@ define([
              * 根据字数、步进、线段坐标定位每个字的位置
              * 由递归改造而成
              * @param {*} distance 步进
-             * @param {*} paths 路径坐标[[104.07919775615183, 30.51891304249517], [104.08351074824778, 30.51892377133123]]
+             * @param {*} path 路径坐标[[104.07919775615183, 30.51891304249517], [104.08351074824778, 30.51892377133123]]
              * @param {*} mArr1 
              */
-            _textLocal4Line(distance, paths, mArr1) {
+            _textLocal4Line(distance, path, mArr1) {
                 var mArr = mArr1,
                     _self = this,
                     _distance = distance,
                     _p = [];//临时起点存储
-                for (var i = 0; i < paths.length; i++) {
+                for (var i = 0; i < path.length; i++) {
                     var p2, p1;
                     if (_p.length > 1) {
                         i -= 1;
-                        p2 = paths[i + 1];
+                        p2 = path[i + 1];
                         p1 = _p;
                     } else {
-                        p2 = paths[i + 1];
+                        p2 = path[i + 1];
                         if (!p2) {
-                            paths = null;
+                            path = null;
                             _p = null;
                             return false;
                         }
-                        p1 = paths[i];
+                        p1 = path[i];
                     }
                     var diffX = p2[0] - p1[0],
                         diffY = p2[1] - p1[1],
@@ -324,13 +324,13 @@ define([
 
             /**
              * 
-             * @param {Array} paths 线段坐标三维数组
+             * @param {Array} path 线段坐标三维数组
              */
-            getLineLength(paths) {
+            getLineLength(path) {
                 // [[[104.07919775615183, 30.51891304249517], [104.08351074824778, 30.51892377133123]]]
                 //计算线的总长度
                 var lineLength = 0;
-                paths.forEach(x => {
+                path.forEach(x => {
                     for (let i = 0; i < x.length - 1; i++) {
                         let diffX = x[i + 1][0] - x[i][0];
                         let diffY = x[i + 1][1] - x[i][1];
