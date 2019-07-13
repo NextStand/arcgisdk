@@ -7,6 +7,7 @@
 
 该开发包是基于arcgis for javascript 3.9，是对原始API的一个扩充，原始API正常使用，该SDK仅封装了开发过程中常用的方法，开发包内使用瓦片下载的方式对全国天地图底图进行加载，默认坐标系为**WGS 84**,如果你是**CGCS2000坐标系**，那你可以放心使用；如果需要使用其他REST服务作为底图，你可以构造BaseMap实例的时候自己指定坐标系。
 
+【提示】如果你觉得打开Github太慢了，你可以戳[【这里】][8]
 
 ## 目录
 
@@ -232,8 +233,8 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).initTdt();
 【注意】调用此API时候请添加以下两个引用
 
 ```
-[script src="/arcgisdk/vendor/terraformer/terraformer.min.js"][/script]
-[script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"][/script]
+<script src="/arcgisdk/vendor/terraformer/terraformer.min.js"></script>
+<script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"></script>
 ```
 
 ```
@@ -266,8 +267,8 @@ baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTempl
 【注意】调用此API时候请添加以下两个引用
 
 ```
-[script src="/arcgisdk/vendor/terraformer/terraformer.min.js"][/script]
-[script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"][/script]
+<script src="/arcgisdk/vendor/terraformer/terraformer.min.js"></script>
+<script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"></script>
 ```
 ----------
 
@@ -285,8 +286,8 @@ baseMap.addPointGeoJsonLayer('dk', '/main/map/geodata/xinjingdk.json', infoTempl
 【注意】调用此API时候请添加以下两个引用
 
 ```
-[script src="/arcgisdk/vendor/terraformer/terraformer.min.js"][/script]
-[script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"][/script]
+<script src="/arcgisdk/vendor/terraformer/terraformer.min.js"></script>
+<script src="/arcgisdk/vendor/terraformer-arcgis-parser/terraformer-arcgis-parser.min.js"></script>
 ```
 ## 3.  Class: DrawLayer（绘制类）
 图形绘制类，该类中封装了一些常用的绘制方法；实例化是时候传入BaseMap实例对象，不要将该类的实例作为图层叠加。
@@ -538,3 +539,4 @@ new DijitLayer(Map)
   [5]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html#graphicslayer2
   [6]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html
   [7]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html#graphicslayer2
+  [8]: https://github.com/NextStand/arcgisdk
