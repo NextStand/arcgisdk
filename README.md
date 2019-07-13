@@ -12,7 +12,8 @@
 
  - 使用步骤
  - BaseMap类（基础底图类）
-    - init()    -- 初始化全国天地图底图
+    - initTdt()    -- 初始化全国天地图底图
+    - initTiledMap(sldtserver?,slbzserver?,yxdtserver?)    -- 初始化缓存映射服务资源作为底图
     - changeBaseMap(id)    -- 切换底图类型
     - toggleLable()    -- 切换标注
     - goto(lng, lat , zoom?)    -- 定位点，将点拉到屏幕中心
@@ -113,12 +114,30 @@ require(["BAMAP/BaseMap"], function(BaseMap) { /* code goes here */ });
 ```
 new BaseMap(divId, options?);
 // 一般建议使用下面这样进行实例化的同时进行初始化，这样可以直接呈现底图
-new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
+new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).initTdt();
 ```
 [options参数请点击这里][2]
 
 
 #### 2.3 Method Details
+
+**# initTdt()**
+
+初始化全国天地图作为底图
+
+----------
+**# initTiledMap(sldtserver?,slbzserver?,yxdtserver?)**
+
+初始化有公开的缓存映射服务资源作为底图
+
+【提示】默认加载成都天地图作为底图，不保证永远能成功，如果服务被关闭则加载会失败
+- sldtserver <String> 【电子底图服务地址】
+- slbzserver <String> 【矢量标注服务地址】
+- yxdtserver <String> 【影像底图服务地址】
+
+
+----------
+
 
 **# changeBaseMap(id)**
 
