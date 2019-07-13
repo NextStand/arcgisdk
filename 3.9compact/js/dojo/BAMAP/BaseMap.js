@@ -69,7 +69,6 @@ define([
              * @param {String} yxdtserver 影像底图服务地址
              */
             initTiledMap: function (sldtserver,slbzserver,yxdtserver) {
-
                 var ctx = this,
                     sldt = sldtserver || 'http://www.tianditucd.cn:8108/mzjs234basemapvector/arcgis/rest/services/BASEMAP/Vector/MapServer',
                     slbz = slbzserver || 'http://www.tianditucd.cn:8108/mzjs234basemapraster/arcgis/rest/services/BASEMAP/Raster/MapServer',
