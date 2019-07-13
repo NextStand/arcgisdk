@@ -539,4 +539,4 @@ new DijitLayer(Map)
   [5]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html#graphicslayer2
   [6]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html
   [7]: https://developers.arcgis.com/javascript/3/jsapi/graphicslayer-amd.html#graphicslayer2
-  [8]: https://github.com/NextStand/arcgisdk
+  [8]: https://segmentfault.com/a/1190000019753824
