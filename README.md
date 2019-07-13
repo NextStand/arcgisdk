@@ -147,7 +147,7 @@ new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
 特殊的附加图层，可用于图层管理，不建议直接使用原型的添加图层方法
 
 - layer <Layer>    所有继承于 esri/layers 的实例
-- index <Int>    图层层级
+- index <Int>    图层层级，值越大越靠近用户
 ----------
 **# hideAttachLayer(name)**
 
