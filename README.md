@@ -7,12 +7,12 @@
 
 该开发包是基于arcgis for javascript 3.9，是对原始API的一个扩充，原始API正常使用，该SDK仅封装了开发过程中常用的方法，开发包内使用瓦片下载的方式对全国天地图底图进行加载，默认坐标系为**WGS 84**,如果你是**CGCS2000坐标系**，那你可以放心使用；如果需要使用其他REST服务作为底图，咱们另说。
 
-【提示】所有的非原始方法都可以链式调用
 
 ## 目录
 
  - 使用步骤
  - BaseMap类（基础底图类）
+    - init()    -- 初始化全国天地图底图
     - changeBaseMap(id)    -- 切换底图类型
     - toggleLable()    -- 切换标注
     - goto(lng, lat , zoom?)    -- 定位点，将点拉到屏幕中心
@@ -27,6 +27,22 @@
     - addPointGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson点图层
     - addLineGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson线图层
     - addGonGeoJsonLayer(name, url, infoTemplate1?, symbol?, callback?, options?, maxdraw?)    -- 添加GeoJson线图层
+ - DrawLayer类（绘制类）
+  - drawPoint（callback?）    -- 绘制点
+  - drawMultiPoint（callback?）    --绘制多点
+  - drawLine（callback?)    -- 绘制直线段
+  - drawPolyLine（callback?）    -- 绘制折线
+  - drawPolyGon（callback?）    -- 绘制多边形
+  - drawFreePolyGon(callback?)    -- 手绘多边形
+  - drawArrow(callback?)    -- 绘制箭头
+  - drawTrianGle(callback?)    -- 绘制三角形
+  - drawCircle(callback?)    -- 绘制圆形
+  - drawEllipse(callback?)    -- 绘制椭圆
+  - drawRectangle(callback?)  -- 绘制矩形
+  - clear()    -- 清除绘制并释放绘制状态
+  - clsAndte()    -- 清除绘制并保持绘制状态
+  - deactivate()    -- 释放绘制状态不清空绘制要素
+ - 列表项目
 
 ## 1. 使用步骤 ##
 
@@ -73,6 +89,8 @@
 
 ## 2.  Class: BaseMap（基础底图类）
 基础底图类，该类继承于Map 对象，有关Map对象的资料请看[【这里】][1]
+
+【提示】该类所有的非原始方法都可以链式调用
 #### 2.1 AMD Module Require
 ```
 require(["BAMAP/BaseMap"], function(BaseMap) { /* code goes here */ });
