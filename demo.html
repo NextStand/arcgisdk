@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <!-- <link rel="stylesheet" type="text/css" href="/arcgisdk/3.9compact/js/dojo/dijit/themes/tundra/tundra.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/arcgisdk/3.9compact/js/dojo/dijit/themes/dijit.css" />
     <link rel="stylesheet" type="text/css" href="/arcgisdk/3.9compact/js/esri/css/esri.css" />
     <script language="JavaScript" type="text/javascript" src="/Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="/arcgisdk/3.9compact/init.js"></script>
@@ -16,6 +16,7 @@
 
 <body style="height: 100%;margin: 0">
     <div style="position: absolute;top:0;right: 0;z-index: 999;">
+
         <button onclick="baseMap.changeBaseMap('sldt')">sldt-矢量底图</button>
         <button onclick="baseMap.changeBaseMap('imgdt')">imgdt-影像底图</button>
         <button onclick="baseMap.changeBaseMap('dxdt')">dxdt-地形底图</button>
@@ -39,6 +40,8 @@
         <button onclick="dijitLayer.measureDis()">测距</button>
         <button onclick="dijitLayer.measureArea()">测面</button>
         <button onclick="dijitLayer.clearMeas()">清除测距测面</button>
+        <div id="print_button"></div>
+
     </div>
     <div id='map' style="height: 100%;width:100%;background-color:darkgrey">
 
@@ -55,16 +58,37 @@
     require(["BAMAP/BaseMap",
         "BAMAP/DrawLayer",
         "BAMAP/GraphicLayer",
-        "BAMAP/DijitLayer"
-    ], function (BaseMap, DrawLayer, GraphicLayer, DijitLayer) {
-        baseMap = new BaseMap("map", { center: [103.786370, 30.38], zoom: 9 }).initTdt();
+        "BAMAP/DijitLayer",
+        "dojo/_base/event"
+    ], function (BaseMap, DrawLayer, GraphicLayer, DijitLayer, event,) {
+        baseMap = new BaseMap("map", { center: [103.786370, 30.38], zoom: 9, fadeOnZoom: true }).initTdt();
         drawMap = new DrawLayer(baseMap)
-        dijitLayer = new DijitLayer(baseMap)
         graphicLayer = new GraphicLayer({ id: 'test' })
+
         baseMap.adbLayer(graphicLayer)
 
         // 沿线标注例子
-        graphicLayer.addLine([[103.786370, 30.38], [103.786370, 30.385027], [103.904238, 30.510671], [103.924238, 30.510671]])
+        graphicLayer.addLine([[103.786370, 30.38], [103.786370, 30.385027], [103.904238, 30.510671], [103.924238, 30.510671]], null, { id: 123 })
         graphicLayer.addSupFlowText('你好', [[[103.786370, 30.38], [103.786370, 30.385027], [103.904238, 30.510671], [103.924238, 30.510671]]])
+
+        
+        // 以下是工具类的简单例子
+        dijitLayer = new DijitLayer(baseMap, {
+            deactivate: function (obj) {
+                console.log(obj)
+            }
+        })
+        baseMap.graphics.on("click", function (evt) {
+            event.stop(evt);
+            dijitLayer.activateToolbar(graphicLayer.graphics[0])
+        });
+
+        baseMap.on("click", function (evt) {
+            dijitLayer.deactivate();
+        });
+
+
+
+
     })
 </script>
