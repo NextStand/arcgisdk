@@ -58,6 +58,10 @@
     - measureDis()    -- 测距
     - measureArea()    -- 测面
     - clearMeas()    -- 清空测量数据
+    - activateToolbar(graphic)    -- 编辑要素
+    - deactivate()    -- 释放编辑状态
+    - getCurrentState()    --获取当前编辑的一些状态
+    - refresh()    -- 刷新编辑的内部状态
 
 ## 1. 使用步骤 ##
 
@@ -512,9 +516,36 @@ require(["BAMAP/DijitLayer"], function(DijitLayer) { /* code goes here */ });
 #### 5.2 Constructors
 
 ```
-new DijitLayer(Map)
+new DijitLayer(Map,options?)
 // Map为BaseMap类的实例
 ```
+
+ - options是一个键值对对象，值都为函数，在对应状态的时候会被回调，回调参数都为一个对象
+    - activate [Function] 激活编辑状态时候触发 {graphic,tool}
+    - deactivate [Function] 释放编辑状态时候触发 {graphic,info,tool}
+    - graphic-click [Function] 单击要素时触发 {graphic,info}
+    - graphic-first-move [Function] 开始移动要素时触发 {graphic}
+    - graphic-move [Function] 要素移动持续触发 {graphic,transform}
+    - graphic-move-start [Function] 在要素上按下鼠标按钮时触发，通常在移动要素时触发{graphic}
+    - graphic-move-stop [Function] 在释放鼠标按钮时触发，通常在移动图形后触发 {graphic,transform}
+    - rotate [Function] 图形旋转时连续触发 {graphic,info}
+    - rotate-first-move [Function] 当用户开始拖动句柄以旋转要素时触发 {graphic}
+    - rotate-start [Function] 当用户单击手柄开始旋转要素时触发 {graphic}
+    - rotate-stop [Function] 从旋转手柄释放鼠标按钮以完成要素旋转时触发 {graphic,info}
+    - scale [Function] 在缩放要要素时持续触发 {graphic,info}
+    - scale-first-move [Function] 当用户开始拖动句柄以缩放图形时触发 {graphic}
+    - scale-start [Function] 当用户单击手柄以缩放或调整图形大小时触发 {graphic}
+    - scale-stop [Function] 从缩放手柄释放鼠标按钮以完成对图形的缩放时触发 {graphic,info}
+    - vertex-add [Function] 在将新顶点添加到多段线或多边形或将新点添加到多点后触发 {graphic,vertexinfo}
+    - vertex-click [Function] 在多段线或多边形的顶点或多点中的点上单击鼠标按钮时触发 {graphic,vertexinfo}
+    - vertex-delete [Function] 删除顶点（多段线、多边形）或点（多点）后触发 {graphic,vertexinfo}
+    - vertex-first-move [Function] 当用户开始移动多段线、多边形或多点的顶点时触发 {graphic,vertexinfo}
+    - vertex-mouse-out [Function] 当鼠标退出顶点（多段线、多边形）或点（多点）时触发 {graphic,vertexinfo}
+    - vertex-mouse-over [Function] 当鼠标移过顶点（多段线、多边形）或点（多点）时触发 {graphic,vertexinfo}
+    - vertex-move [Function] 在用户移动顶点（多段线、多边形）或点（多点）时连续触发 {graphic,vertexinfo,transform}
+    - vertex-move-start [Function] 在顶点（多段线、多边形）或点（多点）上按下鼠标按钮时触发 {graphic,vertexinfo}
+    - vertex-move-stop [Function] 当鼠标按钮从顶点（多段线、多边形）或点（多点）释放时触发 {graphic,vertexinfo,transform}
+
 #### 5.3 Method Details
 **# measureDis()**
 
@@ -531,6 +562,31 @@ new DijitLayer(Map)
 **# clearMeas()**
 
 清空测量数据
+
+----------
+**# activateToolbar(graphic)**
+
+编辑要素
+- graphic [Object] 图形要素
+
+
+----------
+**# deactivate()**
+
+释放编辑状态
+
+
+----------
+**# getCurrentState()**
+
+获取当前编辑的一些状态
+{tool:当前工具，graphic：正在编辑的要素，isModified：要素是否被修改}
+
+
+----------
+**# refresh()**
+
+刷新工具类的内部状态
 
 
 
