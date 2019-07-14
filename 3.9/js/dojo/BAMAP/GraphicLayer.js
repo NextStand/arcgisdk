@@ -46,9 +46,9 @@ define([
                         pt = new Point(lng, lat, new SpatialReference(map.spatialReference)),
                         symbol = new PictureMarkerSymbol(symbol.imgurl || "/arcgisdk/images/local-marker.png", symbol.width || 25, symbol.height || 25),
                         graphic = new Graphic(pt, symbol);
+                    graphic.setAttributes(attr);
                     if (infoTemplate.hasOwnProperty('content')) {
                         var infoTemplate = new InfoTemplate(infoTemplate.title || '标题', infoTemplate.content);
-                        graphic.setAttributes(attr);
                         graphic.setInfoTemplate(infoTemplate);
                     }
                     if (localAnim) {
@@ -84,9 +84,9 @@ define([
                     multipoint = new Multipoint(mpJson),
                     symbol = new PictureMarkerSymbol(symbol.imgurl || "/arcgisdk/images/local-marker.png", symbol.width || 25, symbol.height || 25),
                     graphic = new Graphic(multipoint, symbol);
+                graphic.setAttributes(attr);
                 if (infoTemplate.hasOwnProperty('content')) {
                     var infoTemplate = new InfoTemplate(infoTemplate.title || '标题', infoTemplate.content);
-                    graphic.setAttributes(attr);
                     graphic.setInfoTemplate(infoTemplate);
                 }
                 this.add(graphic)
@@ -113,9 +113,9 @@ define([
                             symbol.width || 3
                         ),
                         graphic = new Graphic(polyline, sls);
+                        graphic.setAttributes(attr);
                     if (infoTemplate.hasOwnProperty('content')) {
                         var infoTemplate = new InfoTemplate(infoTemplate.title || '标题', infoTemplate.content);
-                        graphic.setAttributes(attr);
                         graphic.setInfoTemplate(infoTemplate);
                     }
                     ctx.add(graphic);
@@ -143,9 +143,9 @@ define([
                                 new Color(symbol.color || [255, 0, 0, 1]), symbol.width || 2), new Color(symbol.fillColor || [255, 255, 0, 0.25])
                         ),
                         graphic = new Graphic(polygon, sfs);
+                        graphic.setAttributes(attr);
                     if (infoTemplate.hasOwnProperty('content')) {
                         var infoTemplate = new InfoTemplate(infoTemplate.title || '标题', infoTemplate.content);
-                        graphic.setAttributes(attr);
                         graphic.setInfoTemplate(infoTemplate);
                     }
                     this.add(graphic);
@@ -176,9 +176,9 @@ define([
                                 new Color(symbol.color || [255, 0, 0, 1]), symbol.width || 2), new Color(symbol.fillColor || [255, 255, 0, 0.25])
                         ),
                         graphic = new Graphic(circle, sfs);
+                        graphic.setAttributes(attr);
                     if (infoTemplate.hasOwnProperty('content')) {
                         var infoTemplate = new InfoTemplate(infoTemplate.title || '标题', infoTemplate.content);
-                        graphic.setAttributes(attr);
                         graphic.setInfoTemplate(infoTemplate);
                     }
                     this.add(graphic);
