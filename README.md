@@ -500,7 +500,7 @@ var attr = {foo:"hello"}
 - offset [Object] 文字坐标偏移 {x：横向偏移，y:纵向偏移}
 
 ## 5.  Class: DijitLayer（工具类）
-工具图层，比如测距，侧面，当然可以使用arcgis提供的原生的。
+工具图层，比如测距，侧面，图形编辑等；当然可以使用arcgis提供的原生的。
 实例化是时候传入BaseMap实例对象，不要将该类的实例作为图层叠加。
 
 
