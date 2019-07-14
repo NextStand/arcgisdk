@@ -1,12 +1,14 @@
 /**
  * Created By Blue On 2019-07-12
- * 工具图层，比如测距，侧面，当然可以使用arcgis提供的原生的
+ * 工具类，比如测距，侧面，图形编辑等当然可以使用arcgis提供的原生的
  * 基于 ArcGis 3.9
  */
 define([
     "dojo/_base/declare",
     "dojo/_base/lang",
     "esri/graphic",
+    "esri/toolbars/edit",
+    "dojo/_base/event",
     "esri/toolbars/draw",
     "esri/symbols/Font",
     "esri/symbols/TextSymbol",
@@ -16,12 +18,12 @@ define([
     "esri/Color",
     "dojo/on",
     "dojo/domReady!"
-], function (declare, lang, Graphic, Draw, Font, TextSymbol, GraphicsLayer,
+], function (declare, lang, Graphic, Edit, event, Draw, Font, TextSymbol, GraphicsLayer,
     SimpleMarkerSymbol, SimpleLineSymbol, Color, on) {
         return declare('DijitLayer', null, {
             __version: 'V1.1.1',
             __author: 'BLUE',
-            constructor: function (map) {
+            constructor: function (map, options) {
                 if (map) {
                     this.__config = {
                         toolbar: null,//绘制工具
@@ -52,6 +54,10 @@ define([
                     };
                     this.__initalToolbar();
                     this.__initialMeasureLayerEvent();
+                    this.__editToolbar = new Edit(map);
+                    for (var key in options) {
+                        this.__editToolbar.on(key, options[key])
+                    }
                 } else {
                     throw new Error('The map parameter is required')
                 }
@@ -292,6 +298,53 @@ define([
                 _toolLayer.clear();
                 this.__config.toolbar.deactivate();
                 this.__clearMapMouseClickEvent();
+            },
+
+            /**
+             * 激活编辑工具
+             * @param {Object} graphic 要素对象
+             */
+            activateToolbar(graphic) {
+                if (graphic) {
+                    var tool = 0;
+                    tool = tool | Edit.MOVE;
+                    tool = tool | Edit.EDIT_VERTICES;
+                    tool = tool | Edit.SCALE;
+                    tool = tool | Edit.ROTATE;
+                    tool = tool | Edit.EDIT_TEXT;
+                    //specify toolbar options        
+                    var options = {
+                        allowAddVertices: true,
+                        allowDeleteVertices: true,
+                        uniformScaling: true
+                    };
+                    this.__editToolbar.activate(tool, graphic, options);
+                } else {
+                    throw new Error('The graphic parameter is required')
+                }
+
+            },
+
+            /**
+             * 释放编辑工具
+             */
+            deactivate: function () {
+                this.__editToolbar.deactivate()
+            },
+
+            /**
+             * 获取当前编辑的一些状态
+             * @returns {Object} {tool:当前工具，graphic：正在编辑的要素，isModified：要素是否被修改}
+             */
+            getCurrentState: function () {
+                return this.__editToolbar.getCurrentState();
+            },
+
+            /**
+             * 刷新工具栏的内部状态
+             */
+            refresh: function () {
+                this.__editToolbar.refresh();
             }
         })
     })
