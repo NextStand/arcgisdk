@@ -86,17 +86,17 @@
 
    
 
-]  若你是使用的完整版请将 **/arcgisdk/3.9compact/init.js** 和 **/arcgisdk/3.9compact/js/dojo/dojo/dojo.js** 中的 **localhost:8009** 修改成你的项目地址和端口
+>  若你是使用的完整版请将 **/arcgisdk/3.9compact/init.js** 和 **/arcgisdk/3.9compact/js/dojo/dojo/dojo.js** 中的 **localhost:8009** 修改成你的项目地址和端口
 
-]  若你是使用的是完整版请将 **/arcgisdk/3.9/init.js** 和 **/arcgisdk/3.9/js/dojo/dojo/dojo.js** 中的 **localhost:8009** 修改成你的项目地址和端口
+>  若你是使用的是完整版请将 **/arcgisdk/3.9/init.js** 和 **/arcgisdk/3.9/js/dojo/dojo/dojo.js** 中的 **localhost:8009** 修改成你的项目地址和端口
 
  - 请开始你的代码，下面是个初始化例子
 
 ```
-[!--创建一个具有id属性的div--]
-[div id='map' style="height: 100%;width:100%;background-color:darkgrey"][/div]
+<!--创建一个具有id属性的div-->
+<div id='map' style="height: 100%;width:100%;background-color:darkgrey"></div>
 
-[script]
+<script>
     // 创建一个全局对象用于存储基础地图对象
     var baseMap = null;
     // 引入BaseMap模块
@@ -105,7 +105,7 @@
         // 实例化一个基础底图类
         baseMap = new BaseMap("map", { center: [116.39, 39.91],zoom:9 }).init();
     })
-[/script]
+</script>
 ```
 
 ## 2.  Class: BaseMap（基础底图类）
