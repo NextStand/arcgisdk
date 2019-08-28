@@ -207,6 +207,14 @@ define([
             },
 
             /**
+             * 获取附加图层
+             * @param {String} name 图层名称或者id
+             */
+            getbLayer:function(name){
+                return this.__AttachLayers[name]
+            },
+            
+            /**
              * 地图放大
              * @param {Number} zoom 放大层级
              */
@@ -386,14 +394,14 @@ define([
                 }
                 this.addLayer(geoJsonLayer);
                 geoJsonLayer.on('load', function (layer) {
-                    self.__AttachLayers[name] = geoJsonLayer;
+                    ctx.__AttachLayers[name] = geoJsonLayer;
                     callback && callback(geoJsonLayer)
                 })
                 geoJsonLayer.on('mouse-over', function (evt) {
-                    self.setMapCursor("pointer");
+                    ctx.setMapCursor("pointer");
                 })
                 geoJsonLayer.on('mouse-out', function (e) {
-                    self.setMapCursor("default");
+                    ctx.setMapCursor("default");
                 })
             },
 
